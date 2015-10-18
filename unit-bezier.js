@@ -1,5 +1,5 @@
 /*!
-* ResponsiveLazyVids 1.0
+* Unit-Bezier 1.0.0
 *
 * Copyright 2015, Jacob Peters - http://jacobpeters.co
 * Credit to:
