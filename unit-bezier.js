@@ -176,3 +176,7 @@ UnitBezier.easings = {
     linear:     [0.5,   0.5,    0.5,    0.5],
     easeInOut:  [0.645, 0.045,  0.355,  1.0]
 };
+
+
+//export for node
+module.exports = UnitBezier;
