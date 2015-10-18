@@ -115,7 +115,7 @@ QUnit.test("Mozilla Simple C", function mozSimpleC(assert) {
     
 });
 
-QUnit.test("Mozilla Simple C", function mozSimpleC(assert) {
+QUnit.test("Mozilla Simple D", function mozSimpleD(assert) {
     var epsilon = 0.00001,
         bezier = new UnitBezier([1.0, 0.0, 0.25, 0.25], epsilon),
         tests = {
