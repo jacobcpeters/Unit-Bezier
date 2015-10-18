@@ -1,7 +1,5 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
-var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 
 gulp.task('clean', function() {
@@ -10,7 +8,7 @@ gulp.task('clean', function() {
 
 gulp.task('scripts', ['clean'], function() {
   return gulp.src('./unit-bezier.js')
-    .pipe(uglify())
+    .pipe(uglify({preserveComments: 'license'}))
     .pipe(gulp.dest('build'));
 });
 
