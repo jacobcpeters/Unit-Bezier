@@ -2,7 +2,7 @@
   "name": "Unit-Bezier",
   "version": "1.0.0",
   "license" : "MIT",
-  "description": "Combination of Mozilla and Chromium implementations of Bezier Curves used for animation time interpolation for Javascript",
+  "description": "Combination of Mozilla and Chromium implementations of Bezier Curves used for animation interpolation for Javascript",
   "author": "Jacob Peters <jacob@jacobpeters.co>",
   "main": "./unit-bezier.js",
   "repository": {
