@@ -173,7 +173,7 @@ UnitBezier.prototype.newtonRaphsonMaxIterations = 8;
 UnitBezier.prototype.binarySubdivideMaxIterations = 20;
 
 UnitBezier.easings = {
-    linear:         [0.5,   0.5,    0.5,    0.5],
+    linear:         [0.0,   0.0,    1.0,    1.0],
     ease:           [0.25,  0.1,    0.25,   1.0],
     easeIn:         [0.42,  0.0,    1.0,    1.0],
     easeInOut:      [0.42,  0.0,    0.58,   1.0],
