@@ -10,10 +10,15 @@
 */
 
 /**
- * @class UnitBezier
- * @brief Calculates the Y coordinate for a given X coordinate on a Bezier curve. 
- * @param [in] Array points The control points of a Bezier curve [x1, y1, x2, y2].
- * @param [in] Float epsilon An epsilon to determine the acceptable error for the answer.
+ * @author Jacob Peters
+ */
+
+/**
+ * Creates a new UnitBezier Object
+ * @class
+ * @classdesc Calculates the Y coordinate for a given X coordinate on a Bezier curve.
+ * @param {Array.<Number>} points The control points of a Bezier curve [x1, y1, x2, y2].
+ * @param {Number} epsilon        An epsilon to determine the acceptable error for the answer.
  */
 function UnitBezier(points, epsilon) {
     'use strict';
@@ -38,6 +43,11 @@ function UnitBezier(points, epsilon) {
     this.sampleTable = this.generateSampleTable();
 }
 
+/**
+ * Generates a look up table to speed up calculations.
+ * @private
+ * @returns {Array.<Number>} Look up table.
+ */
 UnitBezier.prototype.generateSampleTable = function () {
     'use strict';
     
@@ -49,21 +59,45 @@ UnitBezier.prototype.generateSampleTable = function () {
     return sampleTable;
 };
 
+/**
+ * Gets the x coordinate of the Bezier curve at a given percentage through the curve.
+ * @private
+ * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @returns {Number} x coordinate of curve.
+ */
 UnitBezier.prototype.sampleCurveX = function (t) {
     'use strict';
     return ((this.coefX[2] * t + this.coefX[1]) * t + this.coefX[0]) * t;
 };
 
+/**
+ * Gets the y coordinate of the Bezier curve at a given percentage through the curve.
+ * @private
+ * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @returns {Number} y coordinate of curve.
+ */
 UnitBezier.prototype.sampleCurveY = function (t) {
     'use strict';
     return ((this.coefY[2] * t + this.coefY[1]) * t + this.coefY[0]) * t;
 };
 
+/**
+ * Gets the derivative of the Bezier curve at a given percentage through the curve.
+ * @private
+ * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @returns {Number} Derivative of curve.
+ */
 UnitBezier.prototype.sampleCurveDerivativeX = function (t) {
     'use strict';
     return (3.0 * this.coefX[2] * t + 2.0 * this.coefX[1]) * t + this.coefX[0];
 };
 
+/**
+ * Gets the percentage through the curve that a given x coordinate appears on the curve.
+ * @private
+ * @param   {Number} x Desired coordinate 0 <= x <= 1
+ * @returns {Number} Percentage through curve.
+ */
 UnitBezier.prototype.solveCurveX = function (x) {
     'use strict';
     
@@ -87,6 +121,12 @@ UnitBezier.prototype.solveCurveX = function (x) {
     return calculatedT;
 };
 
+/**
+ * Estimates the percentage through the curve that a given x coordinate appears on the curve with a look up table.
+ * @private
+ * @param   {Number} x Desired coordinate 0 <= x <= 1
+ * @returns {Number} Estimated percentage through curve.
+ */
 UnitBezier.prototype.esitimateT = function (x) {
     'use strict';
     
@@ -109,7 +149,12 @@ UnitBezier.prototype.esitimateT = function (x) {
     };
 };
 
-//
+/**
+ * @private
+ * @param   {Number} x          Desired coordinate 0 <= x <= 1
+ * @param   {Number} estimatedT Initial estimate of percentage through curve.
+ * @returns {Number} Percentage through curve or -1 for a failure.
+ */
 UnitBezier.prototype.newtonRaphsonIterate = function (x, estimatedT) {
     'use strict';
     
@@ -129,6 +174,14 @@ UnitBezier.prototype.newtonRaphsonIterate = function (x, estimatedT) {
     console.log('x for calculated t = ' + this.sampleCurveX(estimatedT));
     return -1;
 };
+
+/**
+ * @private
+ * @param   {Number} x           Desired coordinate 0 <= x <= 1
+ * @param   {Number} tBoundsLow  Lowest possible percentage where x could appear.
+ * @param   {Number} tBoundsHigh Highest possible percentage where x could appear.
+ * @returns {Number} Percentage through curve.
+ */
 
 UnitBezier.prototype.binarySubdivide = function (x, tBoundsLow, tBoundsHigh) {
     'use strict';
@@ -152,6 +205,11 @@ UnitBezier.prototype.binarySubdivide = function (x, tBoundsLow, tBoundsHigh) {
     return currentT;
 };
 
+/**
+ * Calculates the Y coordinate for a given X coordinate on a Bezier curve.
+ * @param   {Number} timePercent The x coordinate (time through animation).
+ * @returns {Number} The y coordinate (interpolation factor).
+ */
 UnitBezier.prototype.calc = function (timePercent) {
     'use strict';
 
@@ -172,6 +230,10 @@ UnitBezier.prototype.sampleStepSize = 1.0 / (UnitBezier.prototype.sampleTableSiz
 UnitBezier.prototype.newtonRaphsonMaxIterations = 8;
 UnitBezier.prototype.binarySubdivideMaxIterations = 20;
 
+/**
+ * Animation Easings.
+ * @namespace
+ */
 UnitBezier.easings = {
     linear:         [0.0,   0.0,    1.0,    1.0],
     ease:           [0.25,  0.1,    0.25,   1.0],
@@ -185,4 +247,6 @@ UnitBezier.easings = {
 
 
 //export for node
-module.exports = UnitBezier;
+if(typeof module !== 'undefined')
+    module.exports = UnitBezier;
+
