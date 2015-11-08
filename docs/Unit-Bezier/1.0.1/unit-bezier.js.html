@@ -1,4 +1,44 @@
-/*!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>unit-bezier.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UnitBezier.html">UnitBezier</a><ul class='methods'><li data-type='method'><a href="UnitBezier.html#binarySubdivide">binarySubdivide</a></li><li data-type='method'><a href="UnitBezier.html#calc">calc</a></li><li data-type='method'><a href="UnitBezier.html#esitimateT">esitimateT</a></li><li data-type='method'><a href="UnitBezier.html#generateSampleTable">generateSampleTable</a></li><li data-type='method'><a href="UnitBezier.html#newtonRaphsonIterate">newtonRaphsonIterate</a></li><li data-type='method'><a href="UnitBezier.html#sampleCurveDerivativeX">sampleCurveDerivativeX</a></li><li data-type='method'><a href="UnitBezier.html#sampleCurveX">sampleCurveX</a></li><li data-type='method'><a href="UnitBezier.html#sampleCurveY">sampleCurveY</a></li><li data-type='method'><a href="UnitBezier.html#solveCurveX">solveCurveX</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="UnitBezier.easings.html">easings</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">unit-bezier.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*!
 * Unit-Bezier 1.0.0
 *
 * Copyright 2015, Jacob Peters - http://jacobpeters.co
@@ -17,7 +57,7 @@
  * Creates a new UnitBezier Object
  * @class
  * @classdesc Calculates the Y coordinate for a given X coordinate on a Bezier curve.
- * @param {Array.<Number>} points The control points of a Bezier curve [x1, y1, x2, y2].
+ * @param {Array.&lt;Number>} points The control points of a Bezier curve [x1, y1, x2, y2].
  * @param {Number} epsilon        An epsilon to determine the acceptable error for the answer.
  */
 function UnitBezier(points, epsilon) {
@@ -46,14 +86,14 @@ function UnitBezier(points, epsilon) {
 /**
  * Generates a look up table to speed up calculations.
  * @private
- * @returns {Array.<Number>} Look up table.
+ * @returns {Array.&lt;Number>} Look up table.
  */
 UnitBezier.prototype.generateSampleTable = function () {
     'use strict';
     
     var sampleTable = [];
     
-    for(var i=0; i < this.sampleTableSize; ++i) {
+    for(var i=0; i &lt; this.sampleTableSize; ++i) {
         sampleTable[i] = this.sampleCurveX(i * this.sampleStepSize);
     }
     return sampleTable;
@@ -62,7 +102,7 @@ UnitBezier.prototype.generateSampleTable = function () {
 /**
  * Gets the x coordinate of the Bezier curve at a given percentage through the curve.
  * @private
- * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @param   {Number} t Percentage through the curve 0 &lt;= t &lt;= 1
  * @returns {Number} x coordinate of curve.
  */
 UnitBezier.prototype.sampleCurveX = function (t) {
@@ -73,7 +113,7 @@ UnitBezier.prototype.sampleCurveX = function (t) {
 /**
  * Gets the y coordinate of the Bezier curve at a given percentage through the curve.
  * @private
- * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @param   {Number} t Percentage through the curve 0 &lt;= t &lt;= 1
  * @returns {Number} y coordinate of curve.
  */
 UnitBezier.prototype.sampleCurveY = function (t) {
@@ -84,7 +124,7 @@ UnitBezier.prototype.sampleCurveY = function (t) {
 /**
  * Gets the derivative of the Bezier curve at a given percentage through the curve.
  * @private
- * @param   {Number} t Percentage through the curve 0 <= t <= 1
+ * @param   {Number} t Percentage through the curve 0 &lt;= t &lt;= 1
  * @returns {Number} Derivative of curve.
  */
 UnitBezier.prototype.sampleCurveDerivativeX = function (t) {
@@ -95,7 +135,7 @@ UnitBezier.prototype.sampleCurveDerivativeX = function (t) {
 /**
  * Gets the percentage through the curve that a given x coordinate appears on the curve.
  * @private
- * @param   {Number} x Desired coordinate 0 <= x <= 1
+ * @param   {Number} x Desired coordinate 0 &lt;= x &lt;= 1
  * @returns {Number} Percentage through curve.
  */
 UnitBezier.prototype.solveCurveX = function (x) {
@@ -110,7 +150,7 @@ UnitBezier.prototype.solveCurveX = function (x) {
         calculatedT = this.newtonRaphsonIterate(x, tEstimates.guessForT);
     }
     //For tiny slopes, the estimate is close enough
-    else if(tEstimates.slope < 0.00001) {
+    else if(tEstimates.slope &lt; 0.00001) {
         calculatedT = tEstimates.guessForT;
     }
     //Fallback to Binary Subdivision if all else fails
@@ -124,7 +164,7 @@ UnitBezier.prototype.solveCurveX = function (x) {
 /**
  * Estimates the percentage through the curve that a given x coordinate appears on the curve with a look up table.
  * @private
- * @param   {Number} x Desired coordinate 0 <= x <= 1
+ * @param   {Number} x Desired coordinate 0 &lt;= x &lt;= 1
  * @returns {Number} Estimated percentage through curve.
  */
 UnitBezier.prototype.esitimateT = function (x) {
@@ -135,7 +175,7 @@ UnitBezier.prototype.esitimateT = function (x) {
         dist;
     
     //find which samples the desired x is between
-    for(; index < this.sampleTableSize - 1 && this.sampleTable[index] <= x + this.epsilon; ++index) {}
+    for(; index &lt; this.sampleTableSize - 1 &amp;&amp; this.sampleTable[index] &lt;= x + this.epsilon; ++index) {}
     --index;
     
     dist = (x - this.sampleTable[index]) / (this.sampleTable[index+1] - this.sampleTable[index]); 
@@ -151,7 +191,7 @@ UnitBezier.prototype.esitimateT = function (x) {
 
 /**
  * @private
- * @param   {Number} x          Desired coordinate 0 <= x <= 1
+ * @param   {Number} x          Desired coordinate 0 &lt;= x &lt;= 1
  * @param   {Number} estimatedT Initial estimate of percentage through curve.
  * @returns {Number} Percentage through curve or -1 for a failure.
  */
@@ -161,11 +201,11 @@ UnitBezier.prototype.newtonRaphsonIterate = function (x, estimatedT) {
     var currentX,
         currentDerivitive;
     
-    for(var i=0; i < this.newtonRaphsonMaxIterations; ++i) {
+    for(var i=0; i &lt; this.newtonRaphsonMaxIterations; ++i) {
         currentX = this.sampleCurveX(estimatedT) - x;
         currentDerivitive = this.sampleCurveDerivativeX(estimatedT);
         
-        if(Math.abs(currentX) < this.epsilon) {
+        if(Math.abs(currentX) &lt; this.epsilon) {
             return estimatedT;
         }
         
@@ -177,7 +217,7 @@ UnitBezier.prototype.newtonRaphsonIterate = function (x, estimatedT) {
 
 /**
  * @private
- * @param   {Number} x           Desired coordinate 0 <= x <= 1
+ * @param   {Number} x           Desired coordinate 0 &lt;= x &lt;= 1
  * @param   {Number} tBoundsLow  Lowest possible percentage where x could appear.
  * @param   {Number} tBoundsHigh Highest possible percentage where x could appear.
  * @returns {Number} Percentage through curve.
@@ -200,7 +240,7 @@ UnitBezier.prototype.binarySubdivide = function (x, tBoundsLow, tBoundsHigh) {
         else {
             tBoundsLow = currentT;
         }
-    } while (Math.abs(currentX) > this.epsilon && --i > 0);
+    } while (Math.abs(currentX) > this.epsilon &amp;&amp; --i > 0);
     
     return currentT;
 };
@@ -215,7 +255,7 @@ UnitBezier.prototype.calc = function (timePercent) {
     'use strict';
 
     
-    if(timePercent < 0.0) {
+    if(timePercent &lt; 0.0) {
         timePercent = 0.0;
     }
     else if (timePercent > 1.0) {
@@ -234,14 +274,14 @@ UnitBezier.prototype.binarySubdivideMaxIterations = 20;
 /**
  * Animation Easings.
  * @namespace
- * @property {Array.<Number>} linear 
- * @property {Array.<Number>} ease
- * @property {Array.<Number>} easeIn
- * @property {Array.<Number>} easeInOut
- * @property {Array.<Number>} easeOut 
- * @property {Array.<Number>} easeInBack
- * @property {Array.<Number>} easeOutBack
- * @property {Array.<Number>} easeInOutBack
+ * @property {Array.&lt;Number>} linear 
+ * @property {Array.&lt;Number>} ease
+ * @property {Array.&lt;Number>} easeIn
+ * @property {Array.&lt;Number>} easeInOut
+ * @property {Array.&lt;Number>} easeOut 
+ * @property {Array.&lt;Number>} easeInBack
+ * @property {Array.&lt;Number>} easeOutBack
+ * @property {Array.&lt;Number>} easeInOutBack
  */
 UnitBezier.easings = {
     linear:         [0.0,   0.0,    1.0,    1.0],
@@ -259,3 +299,22 @@ UnitBezier.easings = {
 if(typeof module !== 'undefined')
     module.exports = UnitBezier;
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Sun Nov 08 2015 06:27:51 GMT-0500 (Eastern Standard Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
