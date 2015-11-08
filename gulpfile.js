@@ -8,7 +8,7 @@ gulp.task('makeDocs', shell.task([
 ]))
 
 gulp.task('makeDocsWin', shell.task([
-  'node_modules/.bin/jsdoc.cmd --configure .jsdoc.json --verbose'
+  'node_modules\\.bin\\jsdoc.cmd --configure .jsdoc.json --verbose'
 ]))
 
 gulp.task('clean', function() {
