@@ -1,6 +1,6 @@
 {
   "name": "Unit-Bezier",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "description": "Combination of Mozilla and Chromium implementations of Bezier Curves used for animation interpolation for Javascript",
   "author": "Jacob Peters <jacob@jacobpeters.co>",
