@@ -15,7 +15,8 @@
   "keywords": [
     "bezier",
     "animation",
-    "timing"
+    "timing",
+    "node"
   ],
   "devDependencies": {
     "del": "^2.0.2",
