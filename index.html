@@ -51,7 +51,9 @@
 <p>A Combination of Mozilla and Chromium implementations of Bezier Curves used for animation interpolation for Javascript</p>
 </blockquote>
 <p>Unit-Bezier takes optimizations from both Mozilla and Chromium timing function code and combines them into performant Javascript. It is compliant with both browsers' tests.  </p>
-<h2>Getting Started</h2><h3>Download / Clone</h3><p>Clone the repo using Git:</p>
+<h2>Getting Started</h2><h3>Download / Clone</h3><p>Install with npm::</p>
+<pre class="prettyprint source lang-bash"><code>npm install Unit-Bezier</code></pre>
+<p>Clone the repo using Git:</p>
 <pre class="prettyprint source lang-bash"><code>git clone --bare https://github.com/jacobcpeters/Unit-Bezier.git</code></pre><p>Alternatively you can <a href="https://github.com/jacobcpeters/Unit-Bezier/archive/master.zip">download</a> this repository.</p>
 <h3>Using Unit-Bezier</h3><p>Use the 'new' operator to construct a new UnitBezier object for your function/module/class.
 The first parameter of the constructor is an array that contains the control points for the Bezier Curve [x1, y1, x2, y2]. The second parameter is the epsilon that controls the desired accuracy of the estimations.</p>
