@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Unit-bezier by jacobcpeters</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Unit-bezier</h1>
+        <p>A Combination of Mozilla and Chromium implementations of Bezier Curves used for animation interpolation for Javascript</p>
+
+        <p class="view"><a href="https://github.com/jacobcpeters/Unit-Bezier">View the Project on GitHub <small>jacobcpeters/Unit-Bezier</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/jacobcpeters/Unit-Bezier/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jacobcpeters/Unit-Bezier/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jacobcpeters/Unit-Bezier">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="unit-bezier" class="anchor" href="#unit-bezier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unit-Bezier</h1>
+
+<blockquote>
+<p>A Combination of Mozilla and Chromium implementations of Bezier Curves used for animation interpolation for Javascript</p>
+</blockquote>
+
+<p>Unit-Bezier takes optimizations from both Mozilla and Chromium timing function code and combines them into performant Javascript. It is compliant with both browsers' tests.  </p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<h3>
+<a id="download--clone" class="anchor" href="#download--clone" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download / Clone</h3>
+
+<p>Install with npm:</p>
+
+<div class="highlight highlight-source-shell"><pre>npm install Unit-Bezier</pre></div>
+
+<p>Clone the repo using Git:</p>
+
+<div class="highlight highlight-source-shell"><pre>git clone --bare https://github.com/jacobcpeters/Unit-Bezier.git</pre></div>
+
+<p>Alternatively you can <a href="https://github.com/jacobcpeters/Unit-Bezier/archive/master.zip">download</a> this repository.</p>
+
+<h3>
+<a id="using-unit-bezier" class="anchor" href="#using-unit-bezier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Unit-Bezier</h3>
+
+<p>Use the 'new' operator to construct a new UnitBezier object for your function/module/class.
+The first parameter of the constructor is an array that contains the control points for the Bezier Curve [x1, y1, x2, y2]. The second parameter is the epsilon that controls the desired accuracy of the estimations.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> bezier <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">UnitBezier</span>(controlPoints, epsilon);</pre></div>
+
+<h4>
+<a id="easing-aliases" class="anchor" href="#easing-aliases" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Easing Aliases</h4>
+
+<p>Easy to use aliases are available for common easing types in the UnitBezier.easings object.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> bezier <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">UnitBezier</span>(<span class="pl-smi">UnitBezier</span>.<span class="pl-smi">easings</span>.<span class="pl-smi">easeInOut</span>, <span class="pl-c1">0.005</span>);</pre></div>
+
+<h6>
+<a id="table-of-available-aliases" class="anchor" href="#table-of-available-aliases" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of available aliases:</h6>
+
+<table>
+<thead>
+<tr>
+<th align="left">Easing Name</th>
+<th align="left">Control Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">linear</td>
+<td align="left">[0.0,   0.0,    1.0,    1.0]</td>
+</tr>
+<tr>
+<td align="left">ease</td>
+<td align="left">[0.25,  0.1,    0.25,   1.0]</td>
+</tr>
+<tr>
+<td align="left">easeIn</td>
+<td align="left">[0.42,  0.0,    1.0,    1.0]</td>
+</tr>
+<tr>
+<td align="left">easeInOut</td>
+<td align="left">[0.42,  0.0,    0.58,   1.0]</td>
+</tr>
+<tr>
+<td align="left">easeOut</td>
+<td align="left">[0.0,   0.0,    0.58,   1.0]</td>
+</tr>
+<tr>
+<td align="left">easeInBack</td>
+<td align="left">[0.6,   -0.28,  0.735,  0.045]</td>
+</tr>
+<tr>
+<td align="left">easeOutBack</td>
+<td align="left">[0.175, 0.885,  0.32,   1.275]</td>
+</tr>
+<tr>
+<td align="left">easeInOutBack</td>
+<td align="left">[0.680, -0.550, 0.265,  1.550]</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="code-example" class="anchor" href="#code-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code example:</h4>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> bezier <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">UnitBezier</span>([<span class="pl-c1">0.0</span>, <span class="pl-c1">0.0</span>, <span class="pl-c1">1.0</span>, <span class="pl-c1">1.0</span>], <span class="pl-c1">0.000001</span>), <span class="pl-c">//linear Bezier Curve</span>
+    target <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>animated-opacity<span class="pl-pds">'</span></span>),
+    animationLength <span class="pl-k">=</span> <span class="pl-c1">1000</span>, <span class="pl-c">// 1000ms = 1s</span>
+    startTime <span class="pl-k">=</span> <span class="pl-c1">Date</span>.<span class="pl-en">now</span>();
+
+<span class="pl-k">function</span> <span class="pl-en">animateOpacity</span>() {
+    <span class="pl-k">var</span> timeSinceAnimationStarted <span class="pl-k">=</span> <span class="pl-c1">Date</span>.<span class="pl-en">now</span>() <span class="pl-k">-</span> startTime;
+
+    <span class="pl-smi">target</span>.<span class="pl-c1">style</span>.<span class="pl-smi">opacity</span> <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-k">*</span> <span class="pl-smi">bezier</span>.<span class="pl-en">calc</span>(timeSinceAnimationStarted <span class="pl-k">/</span> animationLength);
+
+    <span class="pl-k">if</span>(timeSinceAnimationStarted <span class="pl-k">&lt;</span> animationLength) {
+        <span class="pl-en">requestAnimationFrame</span>(animateOpacity);
+    }
+}
+
+<span class="pl-en">requestAnimationFrame</span>(animateOpacity);</pre></div>
+
+<h2>
+<a id="feature-requests" class="anchor" href="#feature-requests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feature requests</h2>
+
+<p>If Unit-Bezier doesn't support a feature you require, please put a request in the issues tracker. </p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>© Jacob Peters, 2015. Licensed under an <a href="https://github.com/jacobcpeters/ResponsiveLazyVids/blob/master/LICENSE">MIT</a> license.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jacobcpeters">jacobcpeters</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
