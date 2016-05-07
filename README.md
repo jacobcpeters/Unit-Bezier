@@ -6,6 +6,8 @@ Unit-Bezier takes optimizations from both Mozilla and Chromium timing function c
 
 ## Getting Started
 
+Read the docs at [http://jacobcpeters.github.io/Unit-Bezier/](http://jacobcpeters.github.io/Unit-Bezier/)
+
 ### Download / Clone
 
 Install with npm:
