@@ -215,11 +215,11 @@ UnitBezier.prototype.calc = function (timePercent) {
     'use strict';
 
     
-    if(timePercent < 0.0) {
-        timePercent = 0.0;
+    if(timePercent <= 0.0) {
+        return 0.0;
     }
-    else if (timePercent > 1.0) {
-        timePercent = 1.0
+    else if (timePercent >= 1.0) {
+        return 1.0
     }
     
     return this.sampleCurveY(this.solveCurveX(timePercent));
